@@ -9,32 +9,59 @@ curl -sSL https://raw.githubusercontent.com/xudeheng/gitbash/master/install.sh |
 
 ```
 
+Alias list:
+
 alias add='git add'
+
 alias bisect='git bisect'
+
 alias branch='git branch'
+
 alias checkout='git checkout'
+
 alias co='git checkout'
+
 alias clone='git clone'
+
 alias commit='git commit'
+
 alias ci='git commit'
+
 alias diff='git diff'
+
 alias fetch='git fetch'
+
 alias gitgrep='git grep'
+
 alias init='git init'
+
 alias log='git log'
+
 alias merge='git merge'
+
 alias gitmv='git mv'
+
 alias pull='git pull'
+
 alias push='git push'
+
 alias rebase='git rebase'
+
 alias reset='git reset'
+
 alias remote='git remote'
+
 alias gitrm='git rm'
+
 alias show='git show'
+
 alias status='git status'
+
 alias tag='git tag'
 
 # git utilities
+
 alias cleangit='git reset --hard && git clean -df'
+
 alias adda='git add --all'
 

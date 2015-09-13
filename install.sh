@@ -2,7 +2,7 @@
 
 filename=~/.bash_profile
 path="~/.gitbash"
-if [ -e ${path} ]; then
+if [ ! -d ${path} ]; then
     git clone https://github.com/xudeheng/gitbash.git  ${path}
     echo "git clone https://github.com/xudeheng/gitbash.git  ${path}"
 fi

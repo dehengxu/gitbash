@@ -16,3 +16,5 @@ if [ -z "$r" ];then
 else
     echo "Has already install!"
 fi
+
+source ${HOME}/.gitbash/mygit.rc"

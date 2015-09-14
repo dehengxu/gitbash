@@ -12,7 +12,7 @@ echo ${r}
 
 if [ -z "$r" ];then
     echo "Found!";
-    echo "source ${HOME}/.gitbash/mygit.rc" >> "${filename}"
+    echo 'source ${HOME}/.gitbash/mygit.rc' >> "${filename}"
 else
     echo "Has already install!"
 fi

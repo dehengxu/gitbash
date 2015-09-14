@@ -17,6 +17,6 @@ else
     echo "Has already install!"
 fi
 
-source ${HOME}/.gitbash/mygit.rc"
+source "${HOME}/.gitbash/mygit.rc"
 echo "source $HOME/.gitbash/mygit.rc"
 

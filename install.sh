@@ -18,5 +18,5 @@ else
 fi
 
 source ${HOME}/.gitbash/mygit.rc"
-echo "source ${HOME}/.gitbash/mygit.rc"
+echo "source $HOME/.gitbash/mygit.rc"
 

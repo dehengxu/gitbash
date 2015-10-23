@@ -11,7 +11,7 @@ r=$(find ${filename} | xargs grep "source ${HOME}/.gitbash/mygit.rc")
 echo ${r}
 
 if [ -z "$r" ];then
-    echo "Found!";
+    echo "Found ${HOME}/.bash_profile!";
     echo 'source ${HOME}/.gitbash/mygit.rc' >> "${filename}"
 else
     echo "Has already install!"
@@ -22,7 +22,7 @@ r=$(find ${filename} | xargs grep "source ${HOME}/.gitbash/mygit.rc")
 echo ${r}
 
 if [ -z "$r" ];then
-    echo "Found!";
+    echo "Found ${HOME}/.bashrc!";
     echo 'source ${HOME}/.gitbash/mygit.rc' >> "${filename}"
 else
     echo "Has already install!"
@@ -33,7 +33,7 @@ r=$(find ${filename} | xargs grep "source ${HOME}/.gitbash/mygit.rc")
 echo ${r}
 
 if [ -z "$r" ];then
-    echo "Found!";
+    echo "Found ${HOME}/.zshrc!";
     echo 'source ${HOME}/.gitbash/mygit.rc' >> "${filename}"
 else
     echo "Has already install!"

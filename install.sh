@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 path="${HOME}/.gitbash"
+
+rm -rf ${PATH}
+
 if [ ! -d ${path} ]; then
     git clone https://github.com/xudeheng/gitbash.git  ${path}
     echo "git clone https://github.com/xudeheng/gitbash.git  ${path}"

@@ -2,7 +2,7 @@
 
 path="${HOME}/.gitbash"
 
-rm -rf ${PATH}
+rm -rf ${path}
 
 if [ ! -d ${path} ]; then
     git clone https://github.com/xudeheng/gitbash.git  ${path}

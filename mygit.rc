@@ -25,6 +25,7 @@ alias gitrm='git rm'
 alias show='git show'
 alias status='git status'
 alias tag='git tag'
+alias stash='git stash'
 
 # git utilities
 alias cleangit='git reset --hard && git clean -df'

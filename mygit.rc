@@ -30,3 +30,4 @@ alias stash='git stash'
 # git utilities
 alias cleangit='git reset --hard && git clean -df'
 alias adda='git add --all'
+alias logg='git log --graph'

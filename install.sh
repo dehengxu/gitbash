@@ -10,7 +10,7 @@ if [ ! -d ${path} ]; then
 fi
 
 filename="${HOME}/.bash_profile"
-r=$(find ${filename} | xargs grep "source ${HOME}/.gitbash/mygit.rc")
+r=$(find ${filename} | xargs grep 'source ${HOME}/.gitbash/mygit.rc')
 echo ${r}
 
 if [ -z "$r" ];then
@@ -21,7 +21,7 @@ else
 fi
 
 filename="${HOME}/.bashrc"
-r=$(find ${filename} | xargs grep "source ${HOME}/.gitbash/mygit.rc")
+r=$(find ${filename} | xargs grep 'source ${HOME}/.gitbash/mygit.rc')
 echo ${r}
 
 if [ -z "$r" ];then
@@ -32,7 +32,7 @@ else
 fi
 
 filename="${HOME}/.zshrc"
-r=$(find ${filename} | xargs grep "source ${HOME}/.gitbash/mygit.rc")
+r=$(find ${filename} | xargs grep 'source ${HOME}/.gitbash/mygit.rc')
 echo ${r}
 
 if [ -z "$r" ];then

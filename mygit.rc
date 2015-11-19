@@ -25,9 +25,12 @@ alias gitrm='git rm'
 alias show='git show'
 alias status='git status'
 alias tag='git tag'
-alias stash='git stash'
+alias stash='git stash list'
 
 # git utilities
 alias cleangit='git reset --hard && git clean -df'
 alias adda='git add --all'
-alias logg='git log --graph --oneline'
+alias logg='git log --graph'
+alias logo='git log --oneline'
+alias loggo='git log --graph --oneline'
+

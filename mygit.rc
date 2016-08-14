@@ -46,6 +46,7 @@ alias loggo='git log --graph --oneline'
 # abbreviate for svn users.
 alias co='git checkout'
 alias ci='git commit'
+alias cia='git commit -a'
 alias st='git status'
 alias up='git up'
 alias di='git diff'

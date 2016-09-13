@@ -42,6 +42,7 @@ alias adda='git add --all'
 alias logg='git log --graph'
 alias logo='git log --oneline'
 alias loggo='git log --graph --oneline'
+alias reflog='git reflog'
 
 # abbreviate for svn users.
 alias co='git checkout'

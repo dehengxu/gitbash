@@ -33,12 +33,15 @@ alias pull='git pull'
 alias push='git push'
 
 # others
-alias stash='git stash list'
+alias stashl='git stash list'
+alias stash='git stash'
 alias remote='git remote'
 
 # git utilities
 alias cleangit='git reset --hard && git clean -df'
 alias adda='git add --all'
+alias addc='git add --all && git commit'
+alias addca='git add --all && git commit --amend'
 alias logg='git log --graph'
 alias logo='git log --oneline'
 alias loggo='git log --graph --oneline'

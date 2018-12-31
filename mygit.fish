@@ -71,10 +71,22 @@ function gitc() {
 	git -C $2 $1
 }
 
+function gitc_alias() {
+	if [[ ! -d $1 ]];then
+		echo "Please input a git repo dir."
+		return 1
+	fi
+
+	alias gitca="git -C $1"
+}
+
 # specify workspace
 alias gitc='gitc'
+alias gitca='gitc_alias'
 alias logc='gitc log'
 alias coc='gitc checkout'
 alias diffc='gitc diff'
 alias addc='gitc add'
 alias fetchc='gitc fetch'
+
+

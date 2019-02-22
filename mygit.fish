@@ -56,3 +56,37 @@ alias st='git status'
 alias up='git up'
 alias di='git diff'
 
+#gitc command path
+function gitc() {
+	if [[ -z $2 ]];then
+		echo "Must input path to \"gitc\""
+		echo "Example: gitc log path"
+		return 1
+	elif [[ -z $1 ]]; then
+		echo "Must input command to \"gitc\""
+		echo "Example: gitc log path"
+		return 1
+	fi
+
+	git -C $2 $1
+}
+
+function gitc_alias() {
+	if [[ ! -d $1 ]];then
+		echo "Please input a git repo dir."
+		return 1
+	fi
+
+	alias gitca="git -C $1"
+}
+
+# specify workspace
+alias gitc='gitc'
+alias gitca='gitc_alias'
+alias logc='gitc log'
+alias coc='gitc checkout'
+alias diffc='gitc diff'
+alias addc='gitc add'
+alias fetchc='gitc fetch'
+
+

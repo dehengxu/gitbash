@@ -1,6 +1,7 @@
 # gitbash
 
 [![Join the chat at https://gitter.im/gitbash-cmu/Lobby](https://badges.gitter.im/gitbash-cmu/Lobby.svg)](https://gitter.im/gitbash-cmu/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Alias for git command, you can omit `git` command just use sub-command like 'push'
 
 You can install it :

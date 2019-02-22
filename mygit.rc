@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo "gitbash.sh loaded!!"
+
 # 
 # git alias
 # start working
@@ -59,6 +61,7 @@ alias st='git status'
 alias up='git up'
 alias di='git diff'
 
+# git lfs command alias
 alias lfs='git lfs'
 
 if [ ! -f $(which git-lfs) ];then
@@ -68,4 +71,38 @@ else
     echo "git-lfs has been installed."
     echo "you can use 'lfs pull' instead of 'git lfs pull'"
 fi
+
+#git -C command alias
+function gitc() {
+	if [[ -d $2 ]];then
+		echo "Must input path to \"gitc\""
+		echo "Example: gitc log path"
+		return 1
+	elif [[ -z $1 ]]; then
+		echo "Must input command to \"gitc\""
+		echo "Example: gitc log path"
+		return 1
+	fi
+
+	git -C $2 $1
+}
+
+function gitc_alias() {
+	if [[ ! -d $1 ]];then
+		echo "Please input a git repo dir."
+		return 1
+	fi
+
+	alias gita="git -C $1"
+}
+
+# specify workspace
+alias gitc='gitc'
+alias gitca='gitc_alias'
+alias logc='gitc log'
+alias coc='gitc checkout'
+alias diffc='gitc diff'
+alias addc='gitc add'
+alias fetchc='gitc fetch'
+
 

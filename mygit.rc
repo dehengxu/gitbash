@@ -2,6 +2,9 @@
 # 
 # git alias
 # start working
+
+echo $0 loaded!
+
 alias clone='git clone'
 alias init='git init'
 
@@ -55,4 +58,14 @@ alias camend='git commit --amend'
 alias st='git status'
 alias up='git up'
 alias di='git diff'
+
+alias lfs='git lfs'
+
+if [ ! -f $(which git-lfs) ];then
+    echo "git-lfs not be installed."
+    echo "Please visit site: https://git-lfs.github.com/"
+else
+    echo "git-lfs has been installed."
+    echo "you can use 'lfs pull' instead of 'git lfs pull'"
+fi
 

@@ -64,7 +64,7 @@ alias di='git diff'
 # git lfs command alias
 alias lfs='git lfs'
 
-if [ ! -f $(which git-lfs) ];then
+if [[ ! -f $(which git-lfs) ]];then
     echo "git-lfs not be installed."
     echo "Please visit site: https://git-lfs.github.com/"
 else

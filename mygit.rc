@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "gitbash.sh loaded!!"
+echo "load gitbash!"
 
 # 
 # git alias
@@ -79,7 +79,7 @@ function gitc_alias() {
 		return 1
 	fi
 
-	alias gita="git -C $1"
+	alias gitca="git -C $1"
 }
 
 # specify workspace

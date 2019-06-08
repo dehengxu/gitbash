@@ -4,6 +4,9 @@ echo "load gitbash!"
 # 
 # git alias
 # start working
+
+echo $0 loaded!
+
 alias clone='git clone'
 alias init='git init'
 
@@ -58,9 +61,20 @@ alias st='git status'
 alias up='git up'
 alias di='git diff'
 
-#gitc command path
+# git lfs command alias
+alias lfs='git lfs'
+
+if [ ! -f $(which git-lfs) ];then
+    echo "git-lfs not be installed."
+    echo "Please visit site: https://git-lfs.github.com/"
+else
+    echo "git-lfs has been installed."
+    echo "you can use 'lfs pull' instead of 'git lfs pull'"
+fi
+
+#git -C command alias
 function gitc() {
-	if [[ -z $2 ]];then
+	if [[ -d $2 ]];then
 		echo "Must input path to \"gitc\""
 		echo "Example: gitc log path"
 		return 1

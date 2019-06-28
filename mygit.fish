@@ -57,28 +57,29 @@ alias up='git up'
 alias di='git diff'
 
 #gitc command path
-function gitc() {
-	if [[ -z $2 ]];then
+
+function gitc
+	if test -z $2
 		echo "Must input path to \"gitc\""
 		echo "Example: gitc log path"
 		return 1
-	elif [[ -z $1 ]]; then
+	else if test -z $1
 		echo "Must input command to \"gitc\""
 		echo "Example: gitc log path"
 		return 1
-	fi
+	end
 
 	git -C $2 $1
-}
+end
 
-function gitc_alias() {
-	if [[ ! -d $1 ]];then
-		echo "Please input a git repo dir."
-		return 1
-	fi
+# function gitc_alias() {
+# 	if [[ ! -d $1 ]];then
+# 		echo "Please input a git repo dir."
+# 		return 1
+# 	fi
 
-	alias gitca="git -C $1"
-}
+# 	alias gitca="git -C $1"
+# }
 
 # specify workspace
 alias gitc='gitc'

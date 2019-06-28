@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "gitbash.sh loaded!!"
+echo "load gitbash!"
 
 # 
 # git alias
@@ -64,7 +64,7 @@ alias di='git diff'
 # git lfs command alias
 alias lfs='git lfs'
 
-if [ ! -f $(which git-lfs) ];then
+if [[ ! -f $(which git-lfs) ]];then
     echo "git-lfs not be installed."
     echo "Please visit site: https://git-lfs.github.com/"
 else
@@ -93,7 +93,7 @@ function gitc_alias() {
 		return 1
 	fi
 
-	alias gita="git -C $1"
+	alias gitca="git -C $1"
 }
 
 # specify workspace

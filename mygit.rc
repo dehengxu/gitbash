@@ -105,4 +105,15 @@ alias diffc='gitc diff'
 alias addc='gitc add'
 alias fetchc='gitc fetch'
 
+function ciadd() {
+    git commit -m "【add】"$1
+}
+
+function ciupdate() {
+    git commit -m "【update】"$1
+}
+
+function cifix() {
+    git commit -m "【fix】"$1
+}
 

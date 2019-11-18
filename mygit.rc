@@ -130,3 +130,42 @@ function cifix() {
     git commit -m "【fix】"$1
 }
 
+# fetch repository and remote 
+function fr()
+{
+    # fetch repo
+    repo_path=$1
+    if [[ -z $repo_path ]];then
+        echo "Please input git repo path."
+        return 1
+    elif [[ ! -d $repo_path  ]];then
+        echo "$repo_path does not exist."
+        return 1
+    fi
+
+    remote_name="origin"
+    if [[ -z $2 ]];then
+        echo "use origin as default remote name."
+    elif [[ -z $(git -C $repo_path remote show | grep $2) ]];then
+        echo "remote $2 not exist."
+        return 1
+    fi
+    remote_name=$(git -C $repo_path remote show | grep $2)
+
+    echo "begin:$repo_path"
+    git -C $repo_path fetch $remote_name -a
+    echo " "
+}
+
+# fetch all repos in current path
+function frall() {
+    if [[ -z $1 ]];then
+        echo "Please input git repo path."
+        return 1
+    elif [[ ! -d $1  ]];then
+        echo "$1 does not exist."
+        return 1
+    fi
+    projDir=$1
+    for repo in $(find $projDir -name *.git | sed 's/.git//g'); do fr $repo; done
+}

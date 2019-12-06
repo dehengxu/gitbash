@@ -134,6 +134,7 @@ function cifix() {
 function fr()
 {
     # fetch repo
+	# echo "fetch project $1"
     repo_path=$1
     if [[ -z $repo_path ]];then
         echo "Please input git repo path."
@@ -150,11 +151,13 @@ function fr()
         echo "remote $2 not exist."
         return 1
     fi
-    remote_name=$(git -C $repo_path remote show | grep $2)
+		echo remote_name: $remote_name
+    # remote_name=$(git -C $repo_path remote show | grep $2)
 
     echo "begin:$repo_path"
+    #echo git -C $repo_path fetch $remote_name -a
     git -C $repo_path fetch $remote_name -a
-    echo " "
+    echo "finsihed"
 }
 
 # fetch all repos in current path
@@ -167,5 +170,8 @@ function frall() {
         return 1
     fi
     projDir=$1
-    for repo in $(find $projDir -name *.git | sed 's/.git//g'); do fr $repo; done
+    for repo in $(find $projDir -name *.git | sed 's/.git//g'); do
+		echo "fr $repo"
+		fr $repo; 
+	done
 }

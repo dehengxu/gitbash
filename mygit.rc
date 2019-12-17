@@ -106,6 +106,19 @@ alias diffc='gitc diff'
 alias addc='gitc add'
 alias fetchc='gitc fetch'
 
+function difile() {
+    br1=$1
+    br2=$2
+    file=$3
+    if [[ -z $br1 || -z $br2 || -z $file ]];then
+        echo "Please input branch1 branch2 and last filen name"
+        echo "difile commit1 commit2 filename"
+        echo "difile branch1 branc2 filename"
+        return 1
+    fi
+    git diff $br1 $br2 $(find . -name $3)
+}
+
 function ciadd() {
     if [[ -z $1 ]];then
         echo "Comments should not be empty."

@@ -11,12 +11,21 @@ echo $0 loaded!
 # export GIT_CURL_VERBOSE=1
 
 function SetGitTrace() {
-    export GIT_TRACE=$1
-    export GIT_TRANSFER_TRACE=$1
+    if [[ -z $1 || $1 == '0' ]];then
+        unset GIT_TRACE
+        unset GIT_TRANSFER_TRACE
+    else
+        export GIT_TRACE=1
+        export GIT_TRANSFER_TRACE=1
+    fi
 }
 
 function SetGitVerbose() {
-    export GIT_CURL_VERBOSE=$1    
+    if [[ -z $1 || $1 == '0' ]];then
+        unset GIT_CURL_VERBOSE
+    else
+        export GIT_CURL_VERBOSE=1   
+    fi
 }
 
 alias clone="git clone"

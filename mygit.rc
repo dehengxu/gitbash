@@ -6,8 +6,8 @@ echo "load gitbash!"
 # start working
 
 echo $0 loaded!
-
-alias git="GIT_TRACE=1 git"
+# export GIT_TRACE=1
+# export GIT_TRANSFER_TRACE=1
 
 alias clone="git clone"
 alias init="git init"

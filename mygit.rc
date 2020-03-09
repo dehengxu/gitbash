@@ -7,70 +7,72 @@ echo "load gitbash!"
 
 echo $0 loaded!
 
-alias clone='git clone'
-alias init='git init'
+alias git="GIT_TRACE=1 git"
+
+alias clone="git clone"
+alias init="git init"
 
 # working on the current change
-alias add='git add'
-alias reset='git reset'
-alias gitrm='git rm'
-alias gitmv='git mv'
+alias add="git add"
+alias reset="git reset"
+alias gitrm="git rm"
+alias gitmv="git mv"
 
 # examine the history and state
-alias bisect='git bisect'
-alias log='git log'
-alias gitgrep='git grep'
-alias show='git show'
-alias status='git status'
+alias bisect="git bisect"
+alias log="git log"
+alias gitgrep="git grep"
+alias show="git show"
+alias status="git status"
 
 # grow mark and tweak your commit history
-alias branch='git branch'
-alias br='git branch'
-alias checkout='git checkout'
-alias commit='git commit'
-alias gdiff='git diff'
-alias merge='git merge'
-alias rebase='git rebase'
-alias tag='git tag'
+alias branch="git branch"
+alias br="git branch"
+alias checkout="git checkout"
+alias commit="git commit"
+alias gdiff="git diff"
+alias merge="git merge"
+alias rebase="git rebase"
+alias tag="git tag"
 
 # collabrate
-alias fetch='git fetch'
-alias pull='git pull'
-alias push='git push'
+alias fetch="git fetch"
+alias pull="git pull"
+alias push="git push"
 
 # others
-alias stashl='git stash list'
-alias stash='git stash'
-alias remote='git remote'
+alias stashl="git stash list"
+alias stash="git stash"
+alias remote="git remote"
 
 # git utilities
-alias cleangit='git reset --hard && git clean -df'
-alias adda='git add --all'
-alias addc='git add --all && git commit'
-alias addca='git add --all && git commit --amend'
-alias logg='git log --graph'
-alias logo='git log --oneline'
-alias loggo='git log --graph --oneline'
-alias reflog='git reflog'
+alias cleangit="git reset --hard && git clean -df"
+alias adda="git add --all"
+alias addc="git add --all && git commit"
+alias addca="git add --all && git commit --amend"
+alias logg="git log --graph"
+alias logo="git log --oneline"
+alias loggo="git log --graph --oneline"
+alias reflog="git reflog"
 
 # abbreviate for svn users.
-alias co='git checkout'
-alias ci='git commit'
-alias cia='git commit -a'
-alias camend='git commit --amend'
-alias st='git status'
-alias up='git up'
-alias di='git diff'
+alias co="git checkout"
+alias ci="git commit"
+alias cia="git commit -a"
+alias camend="git commit --amend"
+alias st="git status"
+alias up="git up"
+alias di="git diff"
 
 # git lfs command alias
-alias lfs='git lfs'
+alias lfs="git lfs"
 
 if [[ ! -f $(which git-lfs) ]];then
     echo "git-lfs not be installed."
     echo "Please visit site: https://git-lfs.github.com/"
 else
     echo "git-lfs has been installed."
-    echo "you can use 'lfs pull' instead of 'git lfs pull'"
+    echo "you can use "lfs pull" instead of "git lfs pull""
 fi
 
 #git -C command alias
@@ -98,13 +100,13 @@ function gitc_alias() {
 }
 
 # specify workspace
-alias gitc='gitc'
-alias gitca='gitc_alias'
-alias logc='gitc log'
-alias coc='gitc checkout'
-alias diffc='gitc diff'
-alias addc='gitc add'
-alias fetchc='gitc fetch'
+alias gitc="gitc"
+alias gitca="gitc_alias"
+alias logc="gitc log"
+alias coc="gitc checkout"
+alias diffc="gitc diff"
+alias addc="gitc add"
+alias fetchc="gitc fetch"
 
 function difile() {
     br1=$1
@@ -184,7 +186,7 @@ function frall() {
         return 1
     fi
     projDir=$1
-    for repo in $(find $projDir -name *.git | sed 's/.git//g'); do
+    for repo in $(find $projDir -name *.git | sed "s/.git//g"); do
 		echo "fr $repo"
 		fr $repo; 
 	done

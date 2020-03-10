@@ -82,6 +82,7 @@ alias camend="git commit --amend"
 alias st="git status"
 alias up="git up"
 alias di="git diff"
+alias wk="git worktree"
 
 # git lfs command alias
 alias lfs="git lfs"

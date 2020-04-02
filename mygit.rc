@@ -47,6 +47,8 @@ alias status="git status"
 # grow mark and tweak your commit history
 alias branch="git branch"
 alias br="git branch"
+alias brl="git branch --list"
+
 alias checkout="git checkout"
 alias commit="git commit"
 alias gdiff="git diff"
@@ -69,10 +71,13 @@ alias cleangit="git reset --hard && git clean -df"
 alias adda="git add --all"
 alias addc="git add --all && git commit"
 alias addca="git add --all && git commit --amend"
+
 alias logg="git log --graph"
 alias logo="git log --oneline"
 alias loggo="git log --graph --oneline"
+alias logflw="git log --follow"
 alias reflog="git reflog"
+
 alias worktree="git worktree"
 
 # abbreviate for svn users.

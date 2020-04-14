@@ -55,6 +55,7 @@ alias gdiff="git diff"
 alias merge="git merge"
 alias rebase="git rebase"
 alias tag="git tag"
+alias clean='git clean'
 
 # collabrate
 alias fetch="git fetch"

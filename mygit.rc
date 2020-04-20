@@ -161,6 +161,7 @@ function new_git_alias() {
     alias push_"$aname"='git -C $home_dir push'
     alias pull_"$aname"='git -C $home_dir pull'
     alias fetch_"$aname"='git -C $home_dir fetch'
+    alias remote_"$aname"='git -C $home_dir remote'
 
     echo "create git command: git_$aname"
     echo "create git command: log_$aname"
@@ -169,6 +170,7 @@ function new_git_alias() {
     echo "create git command: push_$aname"
     echo "create git command: pull_$aname"
     echo "create git command: fetch_$aname"
+    echo "create git command: remote_$aname"
 }
 
 function unalias_git() {
@@ -184,6 +186,7 @@ function unalias_git() {
     unalias push_"$aname"
     unalias pull_"$aname"
     unalias fetch_"$aname"
+    unalias remote_"$aname"
 
     echo "remove git command: git_$aname"
     echo "remove git command: log_$aname"
@@ -192,6 +195,7 @@ function unalias_git() {
     echo "remove git command: push_$aname"
     echo "remove git command: pull_$aname"
     echo "remove git command: fetch_$aname"
+    echo "remove git command: remote_$aname"
 }
 
 # specify workspace

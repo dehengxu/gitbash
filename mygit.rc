@@ -28,6 +28,15 @@ function SetGitVerbose() {
     fi
 }
 
+function pushcurrent() {
+    if [[ -z $1 ]];then
+        echo "pushcurrent need inpute remote name like: \"origin\""
+        return -1
+    fi
+    remote=$1
+    git push -u $remote $(git branch --show-current)
+}
+
 alias clone="git clone"
 alias init="git init"
 
@@ -103,37 +112,95 @@ else
 fi
 
 #git -C command alias
-function gitc() {
-	if [[ -d $2 ]];then
-		echo "Must input path to \"gitc\""
-		echo "Example: gitc log path"
-		return 1
-	elif [[ -z $1 ]]; then
-		echo "Must input command to \"gitc\""
-		echo "Example: gitc log path"
-		return 1
-	fi
+# function gitc() {
+# 	if [[ -d $2 ]];then
+# 		echo "Must input path to \"gitc\""
+# 		echo "Example: gitc log path"
+# 		return 1
+# 	elif [[ -z $1 ]]; then
+# 		echo "Must input command to \"gitc\""
+# 		echo "Example: gitc log path"
+# 		return 1
+# 	fi
 
-	git -C $2 $1
+# 	git -C $2 $1
+# }
+
+# function gitc_alias() {
+# 	if [[ ! -d $1 ]];then
+# 		echo "Please input a git repo dir."
+# 		return 1
+# 	fi
+
+# 	alias gitca="git -C $1"
+# }
+
+function new_git_alias() {
+    echo "new_gitc_alias()"
+    echo "usage:"
+    echo "new_gitc_alias Sub-name Some-repo-path"
+
+    if [[ -z $1 ]];then
+        echo "Please input git -C alias sub name"
+        return 1
+    fi
+
+    if [[ ! -d $2 ]];then
+        echo "Please input git -C home dir"
+        return 1
+    fi
+
+
+    aname=$1
+    home_dir=$2
+
+    alias git_"$aname"='git -C $home_dir'
+    alias log_"$aname"='git -C $home_dir log'
+    alias co_"$aname"='git -C $home_dir checkout'
+    alias di_"$aname"='git -C $home_dir diff'
+    alias push_"$aname"='git -C $home_dir push'
+    alias pull_"$aname"='git -C $home_dir pull'
+    alias fetch_"$aname"='git -C $home_dir fetch'
+
+    echo "create git command: git_$aname"
+    echo "create git command: log_$aname"
+    echo "create git command: co_$aname"
+    echo "create git command: di_$aname"
+    echo "create git command: push_$aname"
+    echo "create git command: pull_$aname"
+    echo "create git command: fetch_$aname"
 }
 
-function gitc_alias() {
-	if [[ ! -d $1 ]];then
-		echo "Please input a git repo dir."
-		return 1
-	fi
+function unalias_git() {
+    if [[ -z $1 ]];then
+        echo "Please input git -C alias sub name"
+        return 1
+    fi
+    aname=$1
+    unalias git_"$aname"
+    unalias log_"$aname"
+    unalias co_"$aname"
+    unalias di_"$aname"
+    unalias push_"$aname"
+    unalias pull_"$aname"
+    unalias fetch_"$aname"
 
-	alias gitca="git -C $1"
+    echo "remove git command: git_$aname"
+    echo "remove git command: log_$aname"
+    echo "remove git command: co_$aname"
+    echo "remove git command: di_$aname"
+    echo "remove git command: push_$aname"
+    echo "remove git command: pull_$aname"
+    echo "remove git command: fetch_$aname"
 }
 
 # specify workspace
-alias gitc="gitc"
-alias gitca="gitc_alias"
-alias logc="gitc log"
-alias coc="gitc checkout"
-alias diffc="gitc diff"
-alias addc="gitc add"
-alias fetchc="gitc fetch"
+# alias gitc="gitc"
+# alias logc="gitc log"
+# alias coc="gitc checkout"
+# alias diffc="gitc diff"
+# alias addc="gitc add"
+# alias fetchc="gitc fetch"
 
 function difile() {
     br1=$1

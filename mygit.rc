@@ -294,3 +294,9 @@ function frall() {
 		fr $repo; 
 	done
 }
+
+# use make push git repo
+function gmake() {
+	[ ! -d $HOME/.xcompile ] && git clone https://gitee.com/dehengxu/xcompile.git $HOME/.xcompile
+	make -f $HOME/.xcompile/makefiles/makefile_git $1
+}

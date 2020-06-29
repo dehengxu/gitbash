@@ -94,7 +94,7 @@ alias tag="git tag"
 alias clean='git clean'
 
 # collabrate
-alias fetch="git fetch"
+alias gfetch="git fetch" # conflict with google depo_tools 
 alias pull="git pull"
 alias push="git push"
 

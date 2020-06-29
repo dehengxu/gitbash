@@ -28,15 +28,6 @@ function SetGitVerbose() {
     fi
 }
 
-function pushcurrent() {
-    if [[ -z $1 ]];then
-        echo "pushcurrent need inpute remote name like: \"origin\""
-        return -1
-    fi
-    remote=$1
-    git push -u $remote $(git branch --show-current)
-}
-
 alias clone="git clone"
 alias init="git init"
 
@@ -58,9 +49,40 @@ alias branch="git branch"
 alias br="git branch"
 alias brl="git branch --list"
 
-# current branch
-function cbr() {
+# sync repostory
+
+function branch_curr() {
 	git branch --show-current
+}
+
+function pull_curr() {
+    remote="origin"
+    if [[ -z $1 ]];then
+        echo "push_curr use default remote: \"origin\""
+    else
+        remote=$1
+    fi
+    git pull $remote $(git branch --show-current) && clear
+}
+
+function push_curr {
+    remote="origin"
+    if [[ -z $1 ]];then
+        echo "push_curr use default remote: \"origin\""
+    else
+        remote=$1
+    fi
+    git push -u $remote $(git branch --show-current) && clear
+}
+
+function fetch_all() {
+    remote="origin"
+    if [[ -z $1 ]];then
+        echo "push_curr use default remote: \"origin\""
+    else
+        remote=$1
+    fi
+    git fetch $remote -a && clear
 }
 
 alias checkout="git checkout"

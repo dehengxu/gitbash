@@ -28,8 +28,31 @@ function SetGitVerbose() {
     fi
 }
 
-alias clone="git clone"
-alias init="git init"
+# alias clone="git clone"
+function clone() {
+    git clone
+    gen_git_hooks
+}
+
+# alias init="git init"
+function init() {
+    git init
+    gen_git_hooks
+}
+
+function gen_git_hooks() {
+    if [[ ! -f .git/hooks/post-checkout ]];then
+        echo 
+'echo "checked out"
+echo $pwd
+if [[ -f ./Podfile && -f $(which pod) ]];then
+    pod install
+fi
+' > .git/hooks/post-checkout
+    fi
+
+    
+}
 
 # working on the current change
 alias add="git add"

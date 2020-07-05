@@ -32,7 +32,7 @@ alias ci='git commit'
 
 alias diff='git diff'
 
-alias fetch='git fetch'
+alias gfetch='git fetch'
 
 alias gitgrep='git grep'
 

@@ -47,13 +47,13 @@ function SetGitVerbose() {
 
 # alias clone="git clone"
 function clone() {
-    xg clone
+    xg clone $@
     gen_git_hooks
 }
 
 # alias init="git init"
 function init() {
-    xg init
+    xg init $@
     gen_git_hooks
 }
 
@@ -73,41 +73,41 @@ fi
 
 # working on the current change
 function add() {
-    xg add
+    xg add $@
 }
 
 function reset() {
-    xg reset
+    xg reset $@
 }
 
 function grm() {
-    xg rm
+    xg rm $@
 }
 
 function gmv() {
-    xg mv
+    xg mv $@
 }
 
 # examine the history and state
 function bisect() {
-    xg bisect
+    xg bisect $@
 }
 
 function log() {
-    xg log
+    xg log $@
 }
 
 function gitgrep() {
-    xg grep
+    xg grep $@
 }
 
 function show() {
-    xg show
+    xg show $@
 }
 
 # grow mark and tweak your commit history
 function branch() {
-    xg branch
+    xg branch $@
 }
 
 alias br="git branch"
@@ -183,11 +183,11 @@ alias worktree="git worktree"
 
 # abbreviate for svn users.
 function co() {
-    xg checkout
+    xg checkout $@
 }
 
 function ci() {
-    xg commit
+    xg commit $@
 }
 
 function cia() {
@@ -199,25 +199,25 @@ function camend() {
 }
 
 function st() {
-    xg status
+    xg status $@
 }
 
 function up() {
-    xg up
+    xg up $@
 }
 
 function di() {
-    xg diff
+    xg diff $@
 }
 
 function wk() {
-    xg worktree
+    xg worktree $@
 }
 
 # git lfs command alias
 
 function lfs() {
-    xg lfs
+    xg lfs $@
 }
 
 if [[ ! -f $(which git-lfs) ]];then

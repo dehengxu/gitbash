@@ -10,6 +10,22 @@ echo $0 loaded!
 # export GIT_TRANSFER_TRACE=1
 # export GIT_CURL_VERBOSE=1
 
+function cgit() {
+    if [[ ! -d $1 ]];then
+        echo "first input must be dir path."
+        return 1
+    fi
+    git -C $@
+}
+
+function xg() {
+    if [[ ! -d $1 ]];then
+        cgit $(pwd) ${*}
+    else
+        cgit $1 ${@:2}
+    fi
+}
+
 function SetGitTrace() {
     if [[ -z $1 || $1 == '0' ]];then
         unset GIT_TRACE
@@ -28,15 +44,16 @@ function SetGitVerbose() {
     fi
 }
 
+
 # alias clone="git clone"
 function clone() {
-    git clone
+    xg clone
     gen_git_hooks
 }
 
 # alias init="git init"
 function init() {
-    git init
+    xg init
     gen_git_hooks
 }
 
@@ -55,27 +72,51 @@ fi
 }
 
 # working on the current change
-alias add="git add"
-alias reset="git reset"
-alias gitrm="git rm"
-alias gitmv="git mv"
+function add() {
+    xg add
+}
+
+function reset() {
+    xg reset
+}
+
+function grm() {
+    xg rm
+}
+
+function gmv() {
+    xg mv
+}
 
 # examine the history and state
-alias bisect="git bisect"
-alias log="git log"
-alias gitgrep="git grep"
-alias show="git show"
-alias status="git status"
+function bisect() {
+    xg bisect
+}
+
+function log() {
+    xg log
+}
+
+function gitgrep() {
+    xg grep
+}
+
+function show() {
+    xg show
+}
 
 # grow mark and tweak your commit history
-alias branch="git branch"
+function branch() {
+    xg branch
+}
+
 alias br="git branch"
 alias brl="git branch --list"
 
 # sync repostory
 
 function branch_curr() {
-	git branch --show-current
+	xg branch --show-current
 }
 
 function pull_curr() {
@@ -141,17 +182,43 @@ alias reflog="git reflog"
 alias worktree="git worktree"
 
 # abbreviate for svn users.
-alias co="git checkout"
-alias ci="git commit"
-alias cia="git commit -a"
-alias camend="git commit --amend"
-alias st="git status"
-alias up="git up"
-alias di="git diff"
-alias wk="git worktree"
+function co() {
+    xg checkout
+}
+
+function ci() {
+    xg commit
+}
+
+function cia() {
+    xg commit -a
+}
+
+function camend() {
+    xg commit --amend
+}
+
+function st() {
+    xg status
+}
+
+function up() {
+    xg up
+}
+
+function di() {
+    xg diff
+}
+
+function wk() {
+    xg worktree
+}
 
 # git lfs command alias
-alias lfs="git lfs"
+
+function lfs() {
+    xg lfs
+}
 
 if [[ ! -f $(which git-lfs) ]];then
     echo "git-lfs not be installed."

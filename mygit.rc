@@ -47,13 +47,13 @@ function SetGitVerbose() {
 
 # alias clone="git clone"
 function clone() {
-    xg clone $@
+    xg $1 clone ${@:2}
     gen_git_hooks
 }
 
 # alias init="git init"
 function init() {
-    xg init $@
+    xg $1 init ${@:2}
     gen_git_hooks
 }
 
@@ -73,52 +73,52 @@ fi
 
 # working on the current change
 function add() {
-    xg add $@
+    xg $1 add ${@:2}
 }
 
 function reset() {
-    xg reset $@
+    xg $1 reset ${@:2}
 }
 
 function grm() {
-    xg rm $@
+    xg $1 rm ${@:2}
 }
 
 function gmv() {
-    xg mv $@
+    xg $1 mv ${@:2}
 }
 
 # examine the history and state
 
 function bisect() {
-    xg bisect $@
+    xg $1 bisect ${@:2}
 }
 
 function log() {
-    xg log $@
+    xg $1 log ${@:2}
 }
 
 function gitgrep() {
-    xg grep $@
+    xg $1 grep ${@:2}
 }
 
 function show() {
-    xg show $@
+    xg $1 show ${@:2}
 }
 
 # grow mark and tweak your commit history
 function br() {
-    xg branch $@
+    xg $1 branch ${@:2}
 }
 
 function brl() {
-    xg branch --list $@
+    xg $1 branch --list ${@:2}
 }
 
 # sync repostory
 
 function br_curr() {
-	xg branch --show-current $@
+	xg $1 branch --show-current ${@:2}
 }
 
 function pull_curr() {
@@ -130,7 +130,7 @@ function pull_curr() {
     fi
 
     brname=$(xg branch --show-current $@)
-    xg pull $remote $brname $@ && clear
+    xg $1 pull $remote $brname ${@:2} && clear
     #git pull $remote $(git branch --show-current) && clear
 }
 
@@ -142,7 +142,7 @@ function push_curr {
         remote=$1
     fi
     brname=$(xg branch --show-current $@)
-    xg push -u $remote $brname $@ && clear
+    xg $1 push -u $remote $brname ${@:2} && clear
 
     # git push -u $remote $(git branch --show-current) && clear
 }
@@ -156,109 +156,109 @@ function fetch_all() {
     fi
     # brname=$(xg branch --show-current $@)
 
-    xg fetch $remote -a $@ && clear
+    xg $1 fetch $remote -a ${@:2} && clear
 }
 
 function gdiff() {
-    xg diff $@
+    xg $1 diff ${@:2}
 }
 
 function merge() {
-    xg merge $@
+    xg $1 merge ${@:2}
 }
 
 function rebase() {
-    xg rebase $@
+    xg $1 rebase ${@:2}
 }
 
 function tag() {
-    xg tag $@
+    xg $1 tag ${@:2}
 }
 
 function clean() {
-    xg clean $@
+    xg $1 clean ${@:2}
 }
 
 # collabrate
 function gfetch() {
     # conflict with google depo_tools 
-    xg fetch $@
+    xg $1 fetch ${@:2}
 }
 
 function pull() {
-    xg pull $@
+    xg $1 pull ${@:2}
 }
 
 function push() {
-    xg push $@
+    xg $1 push ${@:2}
 }
 
 # others
 function stashl() {
-    xg stash list $@
+    xg $1 stash list ${@:2}
 }
 
 function stash() {
-    xg stash $@
+    xg $1 stash ${@:2}
 }
 
 function remote() {
-    xg remote $@
+    xg $1 remote ${@:2}
 }
 
 # git utilities
 
 # alias cleangit="git reset --hard && git clean -df"
 function cleangit() {
-    xg reset --hard $@
-    xg clean -df $@
+    xg $1 reset --hard ${@:2}
+    xg $1 clean -df ${@:2}
 }
 
 # alias adda="git add --all"
 function adda() {
-    xg add --all $@
+    xg $1 add --all ${@:2}
 }
 
 # alias addc="git add --all && git commit"
 function addc() {
-    xg add --all $@
-    xg commit $@
+    xg $1 add --all ${@:2}
+    xg $1 commit ${@:2}
 }
 
 # alias addca="git add --all && git commit --amend"
 function addca() {
-    xg add --all $@
-    xg commit --amend $@
+    xg $1 add --all ${@:2}
+    xg $1 commit --amend ${@:2}
 }
 
 # alias logg="git log --graph"
 function logg() {
-    xg log --graph $@
+    xg $1 log --graph ${@:2}
 }
 
 # alias logo="git log --oneline"
 function logo() {
-    xg log --oneline $@
+    xg $1 log --oneline ${@:2}
 }
 
 # alias loggo="git log --graph --oneline"
 function loggo() {
-    xg log --graph --oneline $@
+    xg $1 log --graph --oneline ${@:2}
 }
 
 # alias logflw="git log --follow"
 function logflow() {
-    xg log --follow $@
+    xg $1 log --follow ${@:2}
 }
 
 # alias reflog="git reflog"
 function reflog() {
-    xg reflog $@
+    xg $1 reflog ${@:2}
 }
 
 # alias worktree="git worktree"
 function worktree() {
-    xg worktree $@
+    xg $1 worktree ${@:2}
 }
 
 function difile() {
@@ -276,25 +276,25 @@ function difile() {
 
 # git checkout
 function co() {
-    xg checkout $@
+    xg $1 checkout ${@:2}
 }
 
 # git commit ...
 
 function commit() {
-    xg commit $@
+    xg $1 commit ${@:2}
 }
 
 function cia() {
-    xg commit -a $@
+    xg $1 commit -a ${@:2}
 }
 
 function ciempty() {
-    xg commit --allow-empty $@
+    xg $1 commit --allow-empty ${@:2}
 }
 
 function ciam() {
-    xg commit --amend $@
+    xg $1 commit --amend ${@:2}
 }
 
 function ci_() {
@@ -361,29 +361,29 @@ function ci_fix() {
 # abbreviate for svn users.
 
 function ci() {
-    xg commit $@
+    xg $1 commit ${@:2}
 }
 
 function st() {
-    xg status $@
+    xg $1 status ${@:2}
 }
 
 function up() {
-    xg up $@
+    xg $1 up ${@:2}
 }
 
 function di() {
-    xg diff $@
+    xg $1 diff ${@:2}
 }
 
 function wk() {
-    xg worktree $@
+    xg $1 worktree ${@:2}
 }
 
 # git lfs command alias
 
 function lfs() {
-    xg lfs $@
+    xg $1 lfs ${@:2}
 }
 
 if [[ ! -f $(which git-lfs) ]];then

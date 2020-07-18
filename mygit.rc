@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 echo "load gitbash!"
+nxshell=""
+if [[ $(ps $$ | grep $$ |  awk '{print $5}') == 'bash' ]];then
+source $(dirname $0)/git-completion.bash
+nxshell="bash"
+elif [[ $(ps $$ | grep $$ |  awk '{print $5}') == '-zsh' ]];then
+zstyle ':completion:*:*:git:*' script ~/.git-completion.zsh
+nxshell="zsh"
+fi
 
 # 
 # git alias
@@ -71,48 +79,6 @@ fi
     
 }
 
-# working on the current change
-function add() {
-    xg add $@
-}
-
-function reset() {
-    xg reset $@
-}
-
-function grm() {
-    xg rm $@
-}
-
-function gmv() {
-    xg mv $@
-}
-
-# examine the history and state
-function bisect() {
-    xg bisect $@
-}
-
-function log() {
-    xg log $@
-}
-
-function gitgrep() {
-    xg grep $@
-}
-
-function show() {
-    xg show $@
-}
-
-# grow mark and tweak your commit history
-function branch() {
-    xg branch $@
-}
-
-alias br="git branch"
-alias brl="git branch --list"
-
 # sync repostory
 
 function branch_curr() {
@@ -149,26 +115,40 @@ function fetch_all() {
     git fetch $remote -a && clear
 }
 
-alias checkout="git checkout"
-alias commit="git commit"
-alias gdiff="git diff"
+
+# abbreviate for svn users.
+
+alias co='git checkout'
+alias st='git status'
+alias up='git up'
+alias di='git diff'
+alias wk='git worktree'
+alias lfs='git lfs'
+alias log='git log'
+alias br="git branch"
+alias ft="git fetch" # conflict with google depo_tools 
+
+alias reset='git reset'
+alias clean='git clean'
 alias merge="git merge"
 alias rebase="git rebase"
 alias tag="git tag"
-alias clean='git clean'
-
-# collabrate
-alias gfetch="git fetch" # conflict with google depo_tools 
-alias pull="git pull"
-alias push="git push"
-
-# others
 alias stashl="git stash list"
 alias stash="git stash"
 alias remote="git remote"
+alias pull="git pull"
+alias push="git push"
+alias reflog="git reflog"
+alias bisect='git bisect'
 
+# compound with arguments
 # git utilities
+alias brl="git branch --list"
+alias brc='git branch --show-current'
+alias camend='git commit --amend'
+
 alias cleangit="git reset --hard && git clean -df"
+
 alias adda="git add --all"
 alias addc="git add --all && git commit"
 alias addca="git add --all && git commit --amend"
@@ -177,48 +157,16 @@ alias logg="git log --graph"
 alias logo="git log --oneline"
 alias loggo="git log --graph --oneline"
 alias logflw="git log --follow"
-alias reflog="git reflog"
 
-alias worktree="git worktree"
-
-# abbreviate for svn users.
-function co() {
+function cco() {
     xg checkout $@
 }
 
-function ci() {
+function cci() {
     xg commit $@
 }
 
-function cia() {
-    xg commit -a
-}
-
-function camend() {
-    xg commit --amend
-}
-
-function st() {
-    xg status $@
-}
-
-function up() {
-    xg up $@
-}
-
-function di() {
-    xg diff $@
-}
-
-function wk() {
-    xg worktree $@
-}
-
 # git lfs command alias
-
-function lfs() {
-    xg lfs $@
-}
 
 if [[ ! -f $(which git-lfs) ]];then
     echo "git-lfs not be installed."
@@ -412,3 +360,5 @@ function gmake() {
 	[ ! -d $HOME/.xcompile ] && git clone https://gitee.com/dehengxu/xcompile.git $HOME/.xcompile
 	make -f $HOME/.xcompile/makefiles/makefile_git $1
 }
+
+

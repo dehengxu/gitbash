@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 echo "load gitbash!"
+nxshell=""
+if [[ $(ps $$ | grep $$ |  awk '{print $5}') == 'bash' ]];then
+source $(dirname $0)/git-completion.bash
+nxshell="bash"
+elif [[ $(ps $$ | grep $$ |  awk '{print $5}') == '-zsh' ]];then
+zstyle ':completion:*:*:git:*' script ~/.git-completion.zsh
+nxshell="zsh"
+fi
 
 # 
 # git alias
@@ -47,13 +55,13 @@ function SetGitVerbose() {
 
 # alias clone="git clone"
 function clone() {
-    xg $1 clone ${@:2}
+    xg clone $@
     gen_git_hooks
 }
 
 # alias init="git init"
 function init() {
-    xg $1 init ${@:2}
+    xg init $@
     gen_git_hooks
 }
 
@@ -71,54 +79,10 @@ fi
     
 }
 
-# working on the current change
-function add() {
-    xg $1 add ${@:2}
-}
-
-function reset() {
-    xg $1 reset ${@:2}
-}
-
-function grm() {
-    xg $1 rm ${@:2}
-}
-
-function gmv() {
-    xg $1 mv ${@:2}
-}
-
-# examine the history and state
-
-function bisect() {
-    xg $1 bisect ${@:2}
-}
-
-function log() {
-    xg $1 log ${@:2}
-}
-
-function gitgrep() {
-    xg $1 grep ${@:2}
-}
-
-function show() {
-    xg $1 show ${@:2}
-}
-
-# grow mark and tweak your commit history
-function br() {
-    xg $1 branch ${@:2}
-}
-
-function brl() {
-    xg $1 branch --list ${@:2}
-}
-
 # sync repostory
 
-function br_curr() {
-	xg $1 branch --show-current ${@:2}
+function branch_curr() {
+	xg branch --show-current
 }
 
 function pull_curr() {
@@ -128,10 +92,7 @@ function pull_curr() {
     else
         remote=$1
     fi
-
-    brname=$(xg branch --show-current $@)
-    xg $1 pull $remote $brname ${@:2} && clear
-    #git pull $remote $(git branch --show-current) && clear
+    git pull $remote $(git branch --show-current) && clear
 }
 
 function push_curr {
@@ -141,10 +102,7 @@ function push_curr {
     else
         remote=$1
     fi
-    brname=$(xg branch --show-current $@)
-    xg $1 push -u $remote $brname ${@:2} && clear
-
-    # git push -u $remote $(git branch --show-current) && clear
+    git push -u $remote $(git branch --show-current) && clear
 }
 
 function fetch_all() {
@@ -154,237 +112,61 @@ function fetch_all() {
     else
         remote=$1
     fi
-    # brname=$(xg branch --show-current $@)
-
-    xg $1 fetch $remote -a ${@:2} && clear
+    git fetch $remote -a && clear
 }
 
-function gdiff() {
-    xg $1 diff ${@:2}
-}
-
-function merge() {
-    xg $1 merge ${@:2}
-}
-
-function rebase() {
-    xg $1 rebase ${@:2}
-}
-
-function tag() {
-    xg $1 tag ${@:2}
-}
-
-function clean() {
-    xg $1 clean ${@:2}
-}
-
-# collabrate
-function gfetch() {
-    # conflict with google depo_tools 
-    xg $1 fetch ${@:2}
-}
-
-function pull() {
-    xg $1 pull ${@:2}
-}
-
-function push() {
-    xg $1 push ${@:2}
-}
-
-# others
-function stashl() {
-    xg $1 stash list ${@:2}
-}
-
-function stash() {
-    xg $1 stash ${@:2}
-}
-
-function remote() {
-    xg $1 remote ${@:2}
-}
-
-# git utilities
-
-# alias cleangit="git reset --hard && git clean -df"
-function cleangit() {
-    xg $1 reset --hard ${@:2}
-    xg $1 clean -df ${@:2}
-}
-
-# alias adda="git add --all"
-function adda() {
-    xg $1 add --all ${@:2}
-}
-
-# alias addc="git add --all && git commit"
-function addc() {
-    xg $1 add --all ${@:2}
-    xg $1 commit ${@:2}
-}
-
-# alias addca="git add --all && git commit --amend"
-function addca() {
-    xg $1 add --all ${@:2}
-    xg $1 commit --amend ${@:2}
-}
-
-# alias logg="git log --graph"
-function logg() {
-    xg $1 log --graph ${@:2}
-}
-
-# alias logo="git log --oneline"
-function logo() {
-    xg $1 log --oneline ${@:2}
-}
-
-# alias loggo="git log --graph --oneline"
-function loggo() {
-    xg $1 log --graph --oneline ${@:2}
-}
-
-# alias logflw="git log --follow"
-function logflow() {
-    xg $1 log --follow ${@:2}
-}
-
-# alias reflog="git reflog"
-function reflog() {
-    xg $1 reflog ${@:2}
-}
-
-# alias worktree="git worktree"
-function worktree() {
-    xg $1 worktree ${@:2}
-}
-
-function difile() {
-    br1=$1
-    br2=$2
-    file=$3
-    if [[ -z $br1 || -z $br2 || -z $file ]];then
-        echo "Please input branch1 branch2 and last filen name"
-        echo "difile commit1 commit2 filename"
-        echo "difile branch1 branc2 filename"
-        return 1
-    fi
-    git diff $br1 $br2 $(find . -name $3)
-}
-
-# git checkout
-function co() {
-    xg $1 checkout ${@:2}
-}
-
-# git commit ...
-
-function commit() {
-    xg $1 commit ${@:2}
-}
-
-function cia() {
-    xg $1 commit -a ${@:2}
-}
-
-function ciempty() {
-    xg $1 commit --allow-empty ${@:2}
-}
-
-function ciam() {
-    xg $1 commit --amend ${@:2}
-}
-
-function ci_() {
-    if [[ -z $1 ]];then
-        echo "Comments should not be empty."
-        return 1
-    fi
-    git commit -m "${1} : "$2 ${@:3}    
-}
-
-function ci_mt() {
-    local supported="Add Update Fix Optim Pack Note Remove"
-    local e=""
-    for e in supported;do
-        if [[ $e == $1 ]];then
-            break
-        else
-            e=""
-        fi
-    done
-
-    if [[ -z $e ]];then
-        echo "Fist input must be: $supported"
-        return 1
-    fi
-
-    if [[ -z $2 && $1 != "Pack" ]];then
-        echo "Comments should not be empty."
-        return 1
-    fi
-
-    if [[ $1 == "*Pack" ]];then
-        git commit -m "【$1】*pack" 
-    else
-        git commit -m "【${1}】"$2 ${@:3}
-    fi
-}
-
-function ci_add() {
-    if [[ -z $1 ]];then
-        echo "Comments should not be empty."
-        return 1
-    fi
-    git commit -m "【add】"$1 ${@:2}
-}
-
-function ci_update() {
-    if [[ -z $1 ]];then
-        echo "Comments should not be empty."
-        return 1
-    fi
-
-    git commit -m "【update】"$1 ${@:2}
-}
-
-function ci_fix() {
-    if [[ -z $1 ]];then
-        echo "Comments should not be empty."
-        return 1
-    fi
-    git commit -m "【fix】"$1  ${@:2}
-}
 
 # abbreviate for svn users.
 
-function ci() {
-    xg $1 commit ${@:2}
+alias co='git checkout'
+alias st='git status'
+alias up='git up'
+alias di='git diff'
+alias wk='git worktree'
+alias lfs='git lfs'
+alias log='git log'
+alias br="git branch"
+alias ft="git fetch" # conflict with google depo_tools 
+
+alias reset='git reset'
+alias clean='git clean'
+alias merge="git merge"
+alias rebase="git rebase"
+alias tag="git tag"
+alias stashl="git stash list"
+alias stash="git stash"
+alias remote="git remote"
+alias pull="git pull"
+alias push="git push"
+alias reflog="git reflog"
+alias bisect='git bisect'
+
+# compound with arguments
+# git utilities
+alias brl="git branch --list"
+alias brc='git branch --show-current'
+alias camend='git commit --amend'
+
+alias cleangit="git reset --hard && git clean -df"
+
+alias adda="git add --all"
+alias addc="git add --all && git commit"
+alias addca="git add --all && git commit --amend"
+
+alias logg="git log --graph"
+alias logo="git log --oneline"
+alias loggo="git log --graph --oneline"
+alias logflw="git log --follow"
+
+function cco() {
+    xg checkout $@
 }
 
-function st() {
-    xg $1 status ${@:2}
-}
-
-function up() {
-    xg $1 up ${@:2}
-}
-
-function di() {
-    xg $1 diff ${@:2}
-}
-
-function wk() {
-    xg $1 worktree ${@:2}
+function cci() {
+    xg commit $@
 }
 
 # git lfs command alias
-
-function lfs() {
-    xg $1 lfs ${@:2}
-}
 
 if [[ ! -f $(which git-lfs) ]];then
     echo "git-lfs not be installed."
@@ -393,6 +175,30 @@ else
     echo "git-lfs has been installed."
     echo "you can use "lfs pull" instead of "git lfs pull""
 fi
+
+#git -C command alias
+# function gitc() {
+# 	if [[ -d $2 ]];then
+# 		echo "Must input path to \"gitc\""
+# 		echo "Example: gitc log path"
+# 		return 1
+# 	elif [[ -z $1 ]]; then
+# 		echo "Must input command to \"gitc\""
+# 		echo "Example: gitc log path"
+# 		return 1
+# 	fi
+
+# 	git -C $2 $1
+# }
+
+# function gitc_alias() {
+# 	if [[ ! -d $1 ]];then
+# 		echo "Please input a git repo dir."
+# 		return 1
+# 	fi
+
+# 	alias gitca="git -C $1"
+# }
 
 function new_git_alias() {
     echo "new_gitc_alias()"
@@ -457,6 +263,52 @@ function unalias_git() {
     echo "remove git command: remote_$aname"
 }
 
+# specify workspace
+# alias gitc="gitc"
+# alias logc="gitc log"
+# alias coc="gitc checkout"
+# alias diffc="gitc diff"
+# alias addc="gitc add"
+# alias fetchc="gitc fetch"
+
+function difile() {
+    br1=$1
+    br2=$2
+    file=$3
+    if [[ -z $br1 || -z $br2 || -z $file ]];then
+        echo "Please input branch1 branch2 and last filen name"
+        echo "difile commit1 commit2 filename"
+        echo "difile branch1 branc2 filename"
+        return 1
+    fi
+    git diff $br1 $br2 $(find . -name $3)
+}
+
+function ciadd() {
+    if [[ -z $1 ]];then
+        echo "Comments should not be empty."
+        return 1
+    fi
+    git commit -m "【add】"$1
+}
+
+function ciupdate() {
+    if [[ -z $1 ]];then
+        echo "Comments should not be empty."
+        return 1
+    fi
+
+    git commit -m "【update】"$1
+}
+
+function cifix() {
+    if [[ -z $1 ]];then
+        echo "Comments should not be empty."
+        return 1
+    fi
+    git commit -m "【fix】"$1
+}
+
 # fetch repository and remote 
 function fr()
 {
@@ -508,3 +360,5 @@ function gmake() {
 	[ ! -d $HOME/.xcompile ] && git clone https://gitee.com/dehengxu/xcompile.git $HOME/.xcompile
 	make -f $HOME/.xcompile/makefiles/makefile_git $1
 }
+
+

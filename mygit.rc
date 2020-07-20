@@ -105,6 +105,16 @@ function push_curr {
     git push -u $remote $(git branch --show-current) && clear
 }
 
+function push_all() {
+    remote='origin'
+    if [[ -z $1 ]];then
+        echo "push_curr use default remote: \"origin\""
+    else
+        remote=$1
+    fi
+    git push $remote --all && clear
+}
+
 function fetch_all() {
     remote="origin"
     if [[ -z $1 ]];then

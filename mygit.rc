@@ -149,6 +149,7 @@ alias camend='git commit --amend'
 
 alias cleangit="git reset --hard && git clean -df"
 
+alias add='git add'
 alias adda="git add --all"
 alias addc="git add --all && git commit"
 alias addca="git add --all && git commit --amend"

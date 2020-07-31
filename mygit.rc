@@ -102,7 +102,7 @@ function push_curr {
     else
         remote=$1
     fi
-    git push -u $remote $(git branch --show-current) && clear
+    git push  $remote $(git branch --show-current) && clear
 }
 
 function push_all() {

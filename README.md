@@ -18,9 +18,7 @@ alias add='git add'
 
 alias bisect='git bisect'
 
-alias branch='git branch'
-
-alias checkout='git checkout'
+alias br='git branch'
 
 alias co='git checkout'
 
@@ -30,19 +28,21 @@ alias commit='git commit'
 
 alias ci='git commit'
 
-alias diff='git diff'
-
-alias gfetch='git fetch'
-
-alias gitgrep='git grep'
+alias di='git diff'
 
 alias init='git init'
 
 alias log='git log'
 
+alias logg='git log --graph'
+
+alias loggo='git log --graph --oneline'
+
 alias merge='git merge'
 
-alias gitmv='git mv'
+alias gmv='git mv'
+
+alias grm='git rm'
 
 alias pull='git pull'
 
@@ -53,8 +53,6 @@ alias rebase='git rebase'
 alias reset='git reset'
 
 alias remote='git remote'
-
-alias gitrm='git rm'
 
 alias show='git show'
 

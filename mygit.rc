@@ -172,6 +172,10 @@ alias ci='git commit'
 alias cempty='git commit --allow-empty'
 alias camend='git commit --amend'
 
+alias gmv='git mv'
+
+alias grm='git rm'
+
 function cco() {
     xg checkout $@
 }

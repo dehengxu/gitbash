@@ -373,6 +373,24 @@ function frall() {
 	done
 }
 
+# Fetch all repos in specified path, based on bash command: 'ls'
+function fetch_all_repo() {
+    the_path=$1
+    if [[ ! -d  $the_path ]];then
+        echo "first input must be a exist path"
+        return 1
+    fi
+
+    for repo in $(ls $the_path);do 
+        echo $the_path/$repo; 
+        if [[ -d $the_path/$repo/.git ]];then 
+            git -C $the_path/$repo fetch origin -a;
+        else
+            echo $the_path/$repo is not a git repo 
+        fi; 
+    done
+}
+
 # use make push git repo
 function gmake() {
 	[ ! -d $HOME/.xcompile ] && git clone https://gitee.com/dehengxu/xcompile.git $HOME/.xcompile

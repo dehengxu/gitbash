@@ -81,11 +81,7 @@ fi
 
 # sync repostory
 
-function branch_curr() {
-	xg branch --show-current
-}
-
-function pull_curr() {
+function pullcur() {
     remote="origin"
     if [[ -z $1 ]];then
         echo "push_curr use default remote: \"origin\""
@@ -95,7 +91,7 @@ function pull_curr() {
     git pull $remote $(git branch --show-current) && clear
 }
 
-function push_curr {
+function pushcur {
     remote="origin"
     if [[ -z $1 ]];then
         echo "push_curr use default remote: \"origin\""
@@ -105,7 +101,7 @@ function push_curr {
     git push  $remote $(git branch --show-current) && clear
 }
 
-function push_all() {
+function pushall() {
     remote='origin'
     if [[ -z $1 ]];then
         echo "push_curr use default remote: \"origin\""
@@ -115,7 +111,7 @@ function push_all() {
     git push $remote --all && clear
 }
 
-function fetch_all() {
+function fetchall() {
     remote="origin"
     if [[ -z $1 ]];then
         echo "push_curr use default remote: \"origin\""

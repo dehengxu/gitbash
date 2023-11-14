@@ -25,7 +25,7 @@ function add_line() {
     fi
 }
 
-for shell_profile in $(shell_profiles);do
+for shell_profile in $shell_profiles;do
     filename=$HOME/$shell_profile
 
     add_line $filename 'source ${HOME}/.gitbash/mygit.rc'

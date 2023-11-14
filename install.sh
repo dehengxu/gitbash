@@ -11,7 +11,7 @@ if [ ! -d ${path} ]; then
     echo "git clone https://github.com/xudeheng/gitbash.git  ${path}"
 fi
 
-shell_profiles = ".bash_profile .bashrc .zshrc"
+shell_profiles=".bash_profile .bashrc .zshrc"
 
 function add_line() {
     filename=$1

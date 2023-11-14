@@ -21,7 +21,7 @@ function add_line() {
     if [[ -z $r ]];then
         echo $text >> $filename
     else
-        echo text , has already installed!
+        echo $text , has already installed!
     fi
 }
 

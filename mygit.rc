@@ -323,6 +323,27 @@ function cifix() {
     git commit -m "【fix】"$1
 }
 
+function ci_tmpl () {
+    rootpath=$PWD/.git
+    echo '#[Feature]
+#[Fix]
+#[Change]
+#[Feature]
+#[Refactor]
+#[Clean]
+#[Delete]
+#[Note]
+#[Reason]
+' > .git/.commitTemplate
+    config="[commit]\ntemplate=$rootpath/.commitTemplate"
+    if [[ -z $(cat $PWD/.git/config | grep "$config" ) ]]
+    then
+        echo $config >> $PWD/.git/config
+    else
+        echo "$config" already appended.
+    fi
+}
+
 # fetch repository and remote 
 function fr()
 {

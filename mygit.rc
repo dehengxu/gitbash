@@ -66,17 +66,15 @@ function init() {
 }
 
 function gen_git_hooks() {
-    if [[ ! -f .git/hooks/post-checkout ]];then
+    if [[ -f .git/hooks/post-checkout ]];then
         echo 
 'echo "checked out"
 echo $pwd
 if [[ -f ./Podfile && -f $(which pod) ]];then
     pod install
 fi
-' > .git/hooks/post-checkout
+'> .git/hooks/post-checkout
     fi
-
-    
 }
 
 # sync repostory

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ -z $KEY_NAME ]];then
+KEY_NAME=id_rsa
+fi
+
+
+ssh -i $HOME/.ssh/$KEY_NAME $1 $2

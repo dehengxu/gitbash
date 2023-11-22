@@ -122,6 +122,7 @@ function fetchall() {
 }
 
 
+alias git='GIT_SSH=git-ssh-custom git'
 # abbreviate for svn users.
 
 alias co='git checkout'

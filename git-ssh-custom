@@ -1,7 +1,11 @@
 #!/bin/bash
-if [[ -z $KEY_NAME ]];then
-KEY_NAME=id_rsa
+
+if [[ -z $sf ]];then
+ssh -i $HOME/.ssh/id_rsa $1 $2
+elif [[ $sf == id_rsa_* ]];then
+ssh -i $HOME/.ssh/$sf $1 $2
+elif [[ $sf == id_dsa_* ]];then
+ssh -i $HOME/.ssh/$sf $1 $2
+else
+ssh -i $HOME/.ssh/id_rsa_$sf $1 $2
 fi
-
-
-ssh -i $HOME/.ssh/$KEY_NAME $1 $2

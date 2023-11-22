@@ -325,16 +325,17 @@ function cifix() {
 
 function ci_tmpl () {
     rootpath=$PWD/.git
-    echo '#[Feature]
-#[Fix]
-#[Change]
-#[Feature]
-#[Refactor]
-#[Clean]
-#[Delete]
-#[Note]
-#[Reason]
-' > .git/.commitTemplate
+    echo '
+#[Feature] 
+#[Fix] 
+#[Change] 
+#[Feature] 
+#[Refactor] 
+#[Clean] 
+#[Delete] 
+#[Note] 
+#[Reason] 
+'> .git/.commitTemplate
     config="[commit]\ntemplate=$rootpath/.commitTemplate"
     if [[ -z $(cat $PWD/.git/config | grep "$config" ) ]]
     then

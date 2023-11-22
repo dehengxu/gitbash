@@ -56,13 +56,13 @@ function SetGitVerbose() {
 # alias clone="git clone"
 function clone() {
     xg clone $@
-    gen_git_hooks
+    # gen_git_hooks
 }
 
 # alias init="git init"
 function init() {
     xg init $@
-    gen_git_hooks
+    # gen_git_hooks
 }
 
 function gen_git_hooks() {

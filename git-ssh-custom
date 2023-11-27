@@ -1,11 +1,15 @@
 #!/bin/bash
 
 if [[ -z $sf ]];then
-ssh -i $HOME/.ssh/id_rsa $1 $2
+	# echo $HOME/.ssh/id_rsa
+	ssh -i $HOME/.ssh/id_rsa $1 $2
 elif [[ $sf == id_rsa_* ]];then
-ssh -i $HOME/.ssh/$sf $1 $2
+	# echo $HOME/.ssh/$sf
+	ssh -i $HOME/.ssh/$sf $1 $2
 elif [[ $sf == id_dsa_* ]];then
-ssh -i $HOME/.ssh/$sf $1 $2
+	# echo $HOME/.ssh/$sf
+	ssh -i $HOME/.ssh/$sf $1 $2
 else
-ssh -i $HOME/.ssh/id_rsa_$sf $1 $2
+	# echo $HOME/.ssh/id_rsa_$sf
+	ssh -i $HOME/.ssh/id_rsa_$sf $1 $2
 fi

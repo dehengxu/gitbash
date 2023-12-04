@@ -89,7 +89,7 @@ function pullcur() {
     else
         remote=$1
     fi
-    git pull $remote $(git branch --show-current) && clear
+    git pull $remote $(git branch --show-current) #&& clear
 }
 
 function pushcur {
@@ -99,7 +99,7 @@ function pushcur {
     else
         remote=$1
     fi
-    git push $@ $(git branch --show-current) && clear
+    git push $@ $(git branch --show-current) #&& clear
 }
 
 function pushall() {
@@ -109,7 +109,7 @@ function pushall() {
     else
         remote=$1
     fi
-    git push $remote --all && clear
+    git push $remote --all #&& clear
 }
 
 function fetchall() {
@@ -119,7 +119,7 @@ function fetchall() {
     else
         remote=$1
     fi
-    git fetch $remote -a && clear
+    git fetch $remote -a #&& clear
 }
 
 # abbreviate for svn users.

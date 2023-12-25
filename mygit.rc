@@ -99,7 +99,7 @@ function pushcur {
     else
         remote=$1
     fi
-    git push $@ $(git branch --show-current) #&& clear
+    git push $remote $(git branch --show-current) #&& clear
 }
 
 function pushall() {

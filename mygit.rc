@@ -85,20 +85,33 @@ fi
 function pullcur() {
     remote="origin"
     if [[ -z $1 ]];then
-        echo "push_curr use default remote: \"origin\""
+        echo "push_curr use default remote: \"$remote\""
     else
         remote=$1
     fi
-    git pull $remote $(git branch --show-current) #&& clear
+
+
+	if [[ $(git remote | wc -l) -eq 1 ]];then
+		echo "remote is only one: $(git remote)"
+		remote=$(git remote)
+	fi
+	
+	git pull $remote $(git branch --show-current) #&& clear
 }
 
 function pushcur {
     remote="origin"
     if [[ -z $1 ]];then
-        echo "push_curr use default remote: \"origin\""
+        echo "push_curr use default remote: \"$remote\""
     else
         remote=$1
     fi
+	
+	if [[ $(git remote | wc -l) -eq 1 ]];then
+		echo "remote is only one: $(git remote)"
+		remote=$(git remote)
+	fi
+	
     git push $remote $(git branch --show-current) #&& clear
 }
 

@@ -9,7 +9,7 @@ zstyle ':completion:*:*:git:*' script ~/.git-completion.zsh
 nxshell="zsh"
 fi
 
-# 
+#
 # git alias
 # start working
 
@@ -49,7 +49,7 @@ function SetGitVerbose() {
     if [[ -z $1 || $1 == '0' ]];then
         unset GIT_CURL_VERBOSE
     else
-        export GIT_CURL_VERBOSE=1   
+        export GIT_CURL_VERBOSE=1
     fi
 }
 
@@ -70,7 +70,7 @@ function init() {
 
 function gen_git_hooks() {
     if [[ -f .git/hooks/post-checkout ]];then
-        echo 
+        echo
 'echo "checked out"
 echo $pwd
 if [[ -f ./Podfile && -f $(which pod) ]];then
@@ -85,40 +85,41 @@ fi
 function pullcur() {
     remote="origin"
     if [[ -z $1 ]];then
-        echo "push_curr use default remote: \"$remote\""
+        if [[ $(git remote | wc -l) -eq 1 ]];then
+            # echo "remote auto select: $(git remote)"
+            remote=$(git remote)
+        fi
+        echo "pull current branch from remote: \"$remote\""
     else
         remote=$1
     fi
 
-
-	if [[ $(git remote | wc -l) -eq 1 ]];then
-		echo "remote is only one: $(git remote)"
-		remote=$(git remote)
-	fi
-	
 	git pull $remote $(git branch --show-current) #&& clear
 }
 
 function pushcur {
     remote="origin"
     if [[ -z $1 ]];then
-        echo "push_curr use default remote: \"$remote\""
+        if [[ $(git remote | wc -l) -eq 1 ]];then
+            # echo "remote auto select: $(git remote)"
+            remote=$(git remote)
+        fi
+        echo "push current branch to remote: \"$remote\""
     else
         remote=$1
     fi
-	
-	if [[ $(git remote | wc -l) -eq 1 ]];then
-		echo "remote is only one: $(git remote)"
-		remote=$(git remote)
-	fi
-	
+
     git push $remote $(git branch --show-current) #&& clear
 }
 
 function pushall() {
     remote='origin'
     if [[ -z $1 ]];then
-        echo "push_curr use default remote: \"origin\""
+        if [[ $(git remote | wc -l) -eq 1 ]];then
+            # echo "remote auto select: $(git remote)"
+            remote=$(git remote)
+        fi
+        echo "push all branches to remote: \"$remote\""
     else
         remote=$1
     fi
@@ -128,7 +129,11 @@ function pushall() {
 function fetchall() {
     remote="origin"
     if [[ -z $1 ]];then
-        echo "push_curr use default remote: \"origin\""
+        if [[ $(git remote | wc -l) -eq 1 ]];then
+            # echo "remote auto select: $(git remote)"
+            remote=$(git remote)
+        fi
+        echo "fetch all branches from remote: \"$remote\""
     else
         remote=$1
     fi
@@ -145,7 +150,7 @@ alias wk='git worktree'
 alias lfs='git lfs'
 alias log='git log'
 alias br="git branch"
-alias ft="git fetch" # conflict with google depo_tools 
+alias ft="git fetch" # conflict with google depo_tools
 
 alias reset='git reset'
 alias clean='git clean'
@@ -339,16 +344,16 @@ function cifix() {
 function ci_tmpl () {
     rootpath=$PWD/.git
     echo '
-#[Feature]  
-#[Fix]  
-#[Change]  
-#[Update]  
-#[Feature]  
-#[Refactor]  
-#[Clean]  
-#[Delete]  
-#[Note]  
-#[Reason]  
+#[Feature]
+#[Fix]
+#[Change]
+#[Update]
+#[Feature]
+#[Refactor]
+#[Clean]
+#[Delete]
+#[Note]
+#[Reason]
 '> .git/.commitTemplate
     config="[commit]\ntemplate=$rootpath/.commitTemplate"
     if [[ -z $(cat $PWD/.git/config | grep "$config" ) ]]
@@ -359,7 +364,7 @@ function ci_tmpl () {
     fi
 }
 
-# fetch repository and remote 
+# fetch repository and remote
 function fr()
 {
     # fetch repo
@@ -401,7 +406,7 @@ function frall() {
     projDir=$1
     for repo in $(find $projDir -name *.git | sed "s/.git//g"); do
 		echo "fr $repo"
-		fr $repo; 
+		fr $repo;
 	done
 }
 
@@ -413,13 +418,13 @@ function fetch_all_repo() {
         return 1
     fi
 
-    for repo in $(ls $the_path);do 
-        echo $the_path/$repo; 
-        if [[ -d $the_path/$repo/.git ]];then 
+    for repo in $(ls $the_path);do
+        echo $the_path/$repo;
+        if [[ -d $the_path/$repo/.git ]];then
             git -C $the_path/$repo fetch origin -a;
         else
-            echo $the_path/$repo is not a git repo 
-        fi; 
+            echo $the_path/$repo is not a git repo
+        fi;
     done
 }
 
